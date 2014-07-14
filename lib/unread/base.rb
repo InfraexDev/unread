@@ -5,16 +5,16 @@ module Unread
 
   module Base
     def acts_as_reader
-      ReadMark.belongs_to :user, :class_name => self.to_s
+      ReadMark.belongs_to :member, :class_name => self.to_s
 
-      has_many :read_marks, :dependent => :delete_all, :foreign_key => 'user_id', :inverse_of => :user
+      has_many :read_marks, :dependent => :delete_all, :foreign_key => 'member_id', :inverse_of => :member
 
-      after_create do |user|
+      after_create do |member|
         # We assume that a new user should not be tackled by tons of old messages
         # created BEFORE he signed up.
         # Instead, the new user starts with zero unread messages
         (ReadMark.readable_classes || []).each do |klass|
-          klass.mark_as_read! :all, :for => user
+          klass.mark_as_read! :all, :for => member
         end
       end
 

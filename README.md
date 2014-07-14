@@ -121,7 +121,7 @@ SELECT messages.*
 FROM messages
 LEFT JOIN read_marks ON read_marks.readable_type = 'Message'
                     AND read_marks.readable_id = messages.id
-                    AND read_marks.user_id = 42
+                    AND read_marks.member_id = 42
                     AND read_marks.timestamp >= messages.created_at
 WHERE read_marks.id IS NULL
 AND messages.created_at > '2010-10-20 08:50:00'
