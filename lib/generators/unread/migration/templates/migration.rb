@@ -7,7 +7,9 @@ class UnreadMigration < ActiveRecord::Migration
       t.datetime :timestamp
     end
 
-    add_index :read_marks, [:member_id, :readable_type, :readable_id]
+    add_index :read_marks, [:member_id]
+    add_index :read_marks, [:readable_type, :readable_id]
+
   end
 
   def self.down

@@ -1,4 +1,4 @@
-module Unmember
+module Unread
   module Readable
     module Scopes
       def join_read_marks(member)
